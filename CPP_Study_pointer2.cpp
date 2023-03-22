@@ -19,7 +19,7 @@ int main()
     // 1) 주소 연산자 &
     // 해당 변수의 주소를 반환함
     // 더 정확히는 해당 변수 타입에 따라서 type*로 변환
-    int* pointer = &number;  
+    int* pointer = &number;
 
     // int*
     // - * : 포인터 타입이고 (8바이트) 주소를 담는 변수

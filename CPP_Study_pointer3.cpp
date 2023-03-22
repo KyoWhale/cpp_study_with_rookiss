@@ -9,6 +9,8 @@ struct Player
 
 Player CreatePlayer();
 void CreatePlayer(Player* player);
+void CreatePlayer(Player& player);
+void PrintPlayer(Player player);
 
 int main()
 {
@@ -17,6 +19,11 @@ int main()
 
     Player player2;
     CreatePlayer(&player2);
+
+    Player player3;
+    PrintPlayer(player3);
+    CreatePlayer(player3);
+    PrintPlayer(player3);
 }
 
 Player CreatePlayer()
@@ -32,4 +39,16 @@ void CreatePlayer(Player* player)
 {
     player->hp = 140;
     player->damage = 40;
+}
+
+void CreatePlayer(Player& player)
+{
+    player.hp = 150;
+    player.damage = 50;
+}
+
+void PrintPlayer(Player player)
+{
+    cout << player.hp << endl;
+    cout << player.damage << endl;
 }

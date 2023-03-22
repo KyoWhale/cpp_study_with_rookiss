@@ -32,9 +32,11 @@ struct Player
 // 포인터로 사용하던걸 참조로 넘겨주려면?
 // 참조로 사용하던걸 포인터로 넘겨주려면?
 
+// void CreatePlayer(Player& player);
 void CreatePlayer(Player player);
 void CreatePlayer(const Player* player);
-// void CreatePlayer(Player& player);
+void CreatePlayer(Player* const player);
+void CreatePlayer(const Player* const player);
 
 int main()
 {
@@ -52,24 +54,36 @@ void CreatePlayer(Player player)
 
 }
 
-// * 이전에 const를 붙일 경우
-// 그 주소를 바꿀 수 없음
+// 값 변경 불가
 void CreatePlayer(const Player* player)
 {
-    // player->hp = 140;
-    // player->damage = 40;
+    Player temp;
+    player = &temp; // 가능
+
+    cout << player->hp; // 읽는 것은 가능
+    // (*player).hp = 140; // 쓰는 것은 불가
+    // player->damage = 40; // 쓰는 것은 불가
 }
 
-// * 이후에 const를 붙일 경우
-// 그 주소에 담겨있는 값들을 바꿀 수 없음
+// 주소 변경 불가
 void CreatePlayer(Player* const player)
 {
+    Player temp;
+    // player = &temp; // 불가
 
+    (*player).hp = 140; // 읽고 쓰기 가능
+    player->damage = 40; // 읽고 쓰기 가능
 }
 
+// 위의 두 const를 합쳐서도 사용할 수 있음
 void CreatePlayer(const Player* const player)
 {
+    Player temp;
+    // player = &temp; // 불가
 
+    cout << player->hp; // 읽는 것은 가능
+    // player->hp = 140; // 불가
+    // player->damage = 40; // 불가
 }
 
 // void CreatePlayer(Player& player)
