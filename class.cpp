@@ -7,11 +7,38 @@ const int TILE_COL = 10;
 class Specialty
 {
 public:
-    void Initialize()
+    Specialty()
     {
+        cout << "매개변수 없는 생성자 호출" << endl;
         m_posX = 0;
         m_posY = 0;
         spawnCount++;
+    }
+    Specialty(int value)
+    {
+        cout << "매개변수 1개 생성자 호출" << endl;
+        m_posX = value;
+        m_posY = value;
+        spawnCount++;
+    }
+    Specialty(int x, int y)
+    {
+        cout << "매개변수 2개 생성자 호출" << endl;
+        m_posX = x;
+        m_posY = y;
+        spawnCount++;
+    }
+    Specialty(const Specialty& original)
+    {
+        cout << "복사 생성자 호출" << endl;
+        m_posX = original.m_posX;
+        m_posY = original.m_posY;
+        spawnCount++;
+    }
+    ~Specialty()
+    {
+        cout << "소멸자 호출" << endl;
+        spawnCount--;
     }
     void Print() const;
     void Move(int x, int y);
@@ -164,8 +191,8 @@ ostream& operator<<(ostream& os, const NewString& temp) // << 연산자
     return os;
 }
 
-int main() 
-{
+// int main() 
+// {
     // Specialty player1;
     // player1.Initialize();
     // Specialty player2;
@@ -183,7 +210,7 @@ int main()
     // ptr->Move(1,2);
     // ptr->Print();
 
-    NewString lion("lion"); // char* 생성자
+    // NewString lion("lion"); // char* 생성자
     // NewString tiger(lion); // 복사 생성자
     // tiger = lion; // 복사 대입 연산자
     
@@ -192,11 +219,11 @@ int main()
     // cout << cat << endl;
     // cout << tiger << endl;
 
-    cout << lion << endl;
-    cout << ++lion << endl;
-    cout << lion-- << endl;
-    cout << lion << endl;
-}
+//     cout << lion << endl;
+//     cout << ++lion << endl;
+//     cout << lion-- << endl;
+//     cout << lion << endl;
+// }
 // 출력 결과
 // Total : 2       Pos : 0,        0
 // Total : 2       Pos : 2,        3
@@ -224,3 +251,23 @@ int main()
 // lion! 0x16b24b260 0x123f04110
 // lion! 0x16b24b240 0x123f04100
 // lion 0x16b24b260 0x123f04120
+
+void Test(Specialty a)
+{
+
+}
+
+int main()
+{
+    Specialty a;
+    cout << "직전 Test" << endl;
+    Test(a);
+    cout << "직후 Test" << endl;
+}
+// 출력 결과
+// 매개변수 없는 생성자 호출
+// 직전 Test
+// 복사 생성자 호출
+// 소멸자 호출
+// 직후 Test
+// 소멸자 호출
