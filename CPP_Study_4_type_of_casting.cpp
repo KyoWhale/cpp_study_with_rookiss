@@ -24,7 +24,7 @@ class Knight : public Player
 
 class Archer : public Player
 {
-
+    
 };
 
 void PrintName(char* str)
